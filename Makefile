@@ -1,7 +1,9 @@
-CC=gcc
+#can be overridden by using 'make CXX=gcc-8' or so
 CXX=g++
-CXXFLAGS=-O3 --std=c++17
-CFLAGS=-O3
+
+#append these flags to flags passed through command line
+override CXXFLAGS+=-O3 --std=c++17
+
 PREFIX=/usr/local
 
 all: configfix
@@ -13,3 +15,6 @@ configfix: main.o
 
 install: configfix
 	install -m 775 configfix $(PREFIX)/bin/
+
+clean:
+	rm -f *.o
