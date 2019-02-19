@@ -14,6 +14,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
+#include "version.h"
 #include <iostream>
 #include <fstream>
 #include <cstdio>
@@ -55,6 +56,10 @@ int main(int args,char** argv) {
     cerr<<"Reading from STDIN is supported, just don't pass any parameters"<<endl;
     cerr<<"Current file will be saved as <filename>.bak"<<endl;
     cerr<<"If it exist, it'll be overwritten"<<endl;
+    return 0;
+  }
+  if(args == 2 && (string(argv[1]) == "-v" || string(argv[1]) == "--version")) {
+    cerr<<"Configfix "<<VERSION<<endl;
     return 0;
   }
   ifstream ifs;
