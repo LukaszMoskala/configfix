@@ -8,7 +8,7 @@ PREFIX=/usr/local
 
 all: configfix
 
-main.o: main.cpp
+main.o: main.cpp version.hpp
 	$(CXX) $(CXXFLAGS) -c -o main.o main.cpp
 configfix: main.o
 	$(CXX) $(CXXFLAGS) -o configfix main.o
