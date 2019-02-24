@@ -9,6 +9,7 @@ Remove empty lines and comments from config files
 
 `configfix -h` or `configfix --help` - shows help, author and license informations
 
+You can use `configfix /path/to/file` without `-f` switch, but filename must be the only argument
 # Comments
 Program interprets `#` and `;` as comments indicators. You can override this by using command line options:
 `configfix -c '!*'` will cause `!` and `*` to be interpreted as comment indicator

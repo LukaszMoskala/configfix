@@ -108,7 +108,13 @@ int main(int _args,char** _argv) {
   //when set to true, program reads STDIN and outputs to STDOUT
   bool useStdin=true;
   //get filename from command line
-  string fname=getarg("f","filename","-");
+  string fname;
+  if(args == 2) {
+    fname=argv[1];
+    if(fname.find("-") == 0) { //that was not a file name
+      fname=getarg("f","filename","-");
+    }
+  }
   //if filename is not '-', use files
   if(fname != "-") {
     //tell program that we'r not using STDIN
