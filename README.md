@@ -8,5 +8,10 @@ Remove empty lines and comments from config files
 `configfix -V` or `configfix --version` - displays program version
 
 `configfix -h` or `configfix --help` - shows help, author and license informations
+
+# Comments
+Program interprets `#` and `;` as comments indicators. You can override this by using command line options:
+`configfix -c '!*'` will cause `!` and `*` to be interpreted as comment indicator
+
 # License
 Program is shared under GNU GPL V3 license, for more informations see https://www.gnu.org/licenses/gpl-3.0.en.html
