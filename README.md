@@ -1,11 +1,11 @@
 # configfix
 Remove empty lines and comments from config files
 # Usage
-`configfix /etc/samba/smb.conf` - remove empty lines and comments from `/etc/samba/smb.conf`. Original file is saved to `/etc/samba/smb.conf.bak`.
+`configfix -f /etc/samba/smb.conf` - remove empty lines and comments from `/etc/samba/smb.conf`. Original file is saved to `/etc/samba/smb.conf.bak`.
 
-`configfix` - read STDIN, remove comments and empty lines, and output to STDOUT.
+`configfix` - read STDIN, remove comments and empty lines, and output to STDOUT. Same as `configfix --stdin` or `configfix -s`
 
-`configfix -v` or `configfix --version` - displays program version
+`configfix -V` or `configfix --version` - displays program version
 
 `configfix -h` or `configfix --help` - shows help, author and license informations
 # License
