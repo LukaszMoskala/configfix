@@ -109,7 +109,7 @@ int main(int _args,char** _argv) {
   bool useStdin=true;
   //get filename from command line
   string fname=getarg("f","filename","-");
-  //if filename is '-' and `--stdin` is not specified
+  //if filename is not '-', use files
   if(fname != "-") {
     //tell program that we'r not using STDIN
     useStdin=false;
