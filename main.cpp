@@ -97,7 +97,7 @@ int main(int _args,char** _argv) {
     return 0;
   }
   if(argexist("V","version")) {
-    cerr<<"Configfix "<<VERSION<<endl;
+    cerr<<"Configfix "<<VERSION<<", compiled "<<__DATE__<<" "<<__TIME__<<endl;
     return 0;
   }
   //characters that indicates comments
