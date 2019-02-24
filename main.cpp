@@ -71,6 +71,12 @@ bool argexist(string shortname, string longname) {
   }
   return false;
 }
+struct stats_t {
+  uint16_t removedComments=0;
+  uint16_t removedEmptyLines=0;
+  uint16_t removedCharacters=0;
+  uint16_t tailingWhitespacesRemoved=0;
+} stats;
 int main(int _args,char** _argv) {
   args=_args;
   argv=_argv;
@@ -144,7 +150,7 @@ int main(int _args,char** _argv) {
       getline(ifs, line);
 
     //find starting position of comment
-    for(int i=0;i<commentCharacters.size();i++) {
+    for(int i=0;i<commentCharacters.size() && line.size();i++) {
 
       char currentCharacter=commentCharacters[i];
 
@@ -155,32 +161,49 @@ int main(int _args,char** _argv) {
       int charpos=line.find(tmp);
 
       //line begins with comment, skip it
-      if(charpos == 0)
+      if(charpos == 0) {
+        stats.removedCharacters+=line.size();
+        stats.removedComments++;
         line=""; //can't use continue becasuse its for inner loop and we need to
       //skip outer loop, so that's solution
+        break;
+      }
 
       //find first non-whitespace character
       char c=firstNonWhitespaceCharacter(line);
 
       //if it's comment OR 0 (that means, string contains only whitespaces)
       //then skip that line
-      if(c == currentCharacter || c == 0)
+      if(c == currentCharacter || c == 0) {
+        stats.removedCharacters+=line.size();
+        stats.removedComments++;
         line=""; //can't use continue becasuse its for inner loop and we need to
         //skip outer loop, so that's solution
+        break;
+      }
 
       //comment exist, and isn't the only thing on that line
       //so remove it
       if(charpos > -1) {
+        int i0=line.size();
         line=line.substr(0, charpos);
+        int i1=line.size();
+        int i2=i0-i1;
+        stats.removedCharacters+=i2;
+        stats.removedComments++;
+        break;
       }
     }
     //skip empty lines
     //it's after loop because that loop might zero-out line lengths
-    if(line.length() == 0)
+    if(line.length() == 0) {
+      stats.removedEmptyLines++;
       continue;
+    }
     //remove tailing whitespaces
+    int i0=line.size();
     line=removeTailingWhitespaces(line);
-
+    stats.tailingWhitespacesRemoved+=(i0-line.size());
     //and finally, print line
     if(useStdin)
       cout<<line<<endl;
@@ -190,5 +213,11 @@ int main(int _args,char** _argv) {
   //close file if opened
   if(!useStdin)
     ofs.close();
+  if(argexist("s","stats")) {
+    cerr<<"Removed tailing whitespaces: "<<stats.tailingWhitespacesRemoved<<endl;
+    cerr<<"Removed comments: "<<stats.removedComments<<endl;
+    cerr<<"        (characters: "<<stats.removedCharacters<<")"<<endl;
+    cerr<<"Removed empty lines: "<<stats.removedEmptyLines<<endl;
+  }
   return 0;
 }
