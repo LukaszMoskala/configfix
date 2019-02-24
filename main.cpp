@@ -95,17 +95,22 @@ int main(int _args,char** _argv) {
     cerr<<"Configfix "<<VERSION<<endl;
     return 0;
   }
+  //characters that indicates comments
   commentCharacters=getarg("c","commentchars","#;");
+  //for file IO handling
   ifstream ifs;
   ofstream ofs;
+  //when set to true, program reads STDIN and outputs to STDOUT
   bool useStdin=true;
+  //get filename from command line
   string fname=getarg("f","filename","-");
+  //if filename is '-' and `--stdin` is not specified
   if(fname != "-" && !argexist("s","stdin")) {
+    //tell program that we'r not using STDIN
     useStdin=false;
+    //generate new file name for backup
     string newname=fname+".bak";
-
     //move file to file.bak
-
     if(rename(fname.c_str(),newname.c_str())) {
       cerr<<"Failed to move "<<fname<<" to "<<newname<<": "<<strerror(errno)<<endl;
       return 1;
