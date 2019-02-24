@@ -169,8 +169,9 @@ int main(int _args,char** _argv) {
       if(charpos == 0) {
         stats.removedCharacters+=line.size();
         stats.removedComments++;
-        line=""; //can't use continue becasuse its for inner loop and we need to
-      //skip outer loop, so that's solution
+        //setting line to empty will force program to skip it when writting
+        //side effect: causes it to be counted in statistics as empty line
+        line="";
         break;
       }
 
@@ -182,8 +183,7 @@ int main(int _args,char** _argv) {
       if(c == currentCharacter || c == 0) {
         stats.removedCharacters+=line.size();
         stats.removedComments++;
-        line=""; //can't use continue becasuse its for inner loop and we need to
-        //skip outer loop, so that's solution
+        line="";
         break;
       }
 
