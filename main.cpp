@@ -27,21 +27,21 @@ using namespace std;
 string commentCharacters;
 
 //returns true if c is whitespace
-bool isWhistespace(char c) {
+bool isWhitespace(char c) {
   return (c == '\t' || c == '\n' || c == '\r' || c == ' ');
 }
 
 string removeTailingWhitespaces(string s) {
   int lastChar=0;
   for(int i=s.length()-1;i>=0 && lastChar == 0;i--) {
-    if(!isWhistespace(s[i])) lastChar=i;
+    if(!isWhitespace(s[i])) lastChar=i;
   }
   return s.substr(0, lastChar+1);
 }
 //returns first non-whitespace character, not it's position!
 char firstNonWhitespaceCharacter(string s) {
   for(int i=0;i<s.size();i++) {
-    if(!isWhistespace(s[i])) return s[i];
+    if(!isWhitespace(s[i])) return s[i];
   }
   return 0;
 }
