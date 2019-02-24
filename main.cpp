@@ -23,7 +23,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 //this string contains characters, that indicate comments in file
-string commentCharacters = "#;";
+//value passed from command line, assigned in main
+string commentCharacters;
 
 //returns true if c is whitespace
 bool isWhistespace(char c) {
@@ -44,8 +45,36 @@ char firstNonWhitespaceCharacter(string s) {
   }
   return 0;
 }
-int main(int args,char** argv) {
-  if(args == 2 && (string(argv[1]) == "-h" || string(argv[1]) == "--help")) {
+int args;
+char **argv;
+//parses argument
+//format:
+// --longname value
+// -shortname value
+
+//shortname should be only 1 character in length!
+string getarg(string shortname, string longname, string defval) {
+  for(int i=1;i<args;i++) {
+    string ca(argv[i]);
+    if( ( ca == "--"+longname  || ca == "-"+shortname ) && i+1 < args ) {
+      return string(argv[i+1]);
+    }
+  }
+  return defval;
+}
+bool argexist(string shortname, string longname) {
+  for(int i=0;i<args;i++) {
+    string ca(argv[i]);
+    if( ca == "--"+longname  || ca == "-"+shortname ) {
+      return true;
+    }
+  }
+  return false;
+}
+int main(int _args,char** _argv) {
+  args=_args;
+  argv=_argv;
+  if(argexist("h","help")) {
     cerr<<"Configfix Copyright (C) 2019 Łukasz Konrad Moskała ukasz_moskala8@tlen.pl"<<endl;
     cerr<<"This program comes with ABSOLUTELY NO WARRANTY."<<endl;
     cerr<<"This is free software, and you are welcome to redistribute it"<<endl;
@@ -62,18 +91,17 @@ int main(int args,char** argv) {
     cerr<<"If it exist, it'll be overwritten"<<endl;
     return 0;
   }
-  if(args == 2 && (string(argv[1]) == "-v" || string(argv[1]) == "--version")) {
+  if(argexist("V","version")) {
     cerr<<"Configfix "<<VERSION<<endl;
     return 0;
   }
+  commentCharacters=getarg("c","commentchars","#;");
   ifstream ifs;
   ofstream ofs;
   bool useStdin=true;
-
-  if(args > 1) {
-    //more than 1 argument, so we'r not using STDIN
+  string fname=getarg("f","filename","-");
+  if(fname != "-" && !argexist("s","stdin")) {
     useStdin=false;
-    string fname=argv[1];
     string newname=fname+".bak";
 
     //move file to file.bak
@@ -97,6 +125,7 @@ int main(int args,char** argv) {
       return 1;
     }
   }
+
   string line; //currently processed line
 
   //If we'r using file, check if there is anything left to read
