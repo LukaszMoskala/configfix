@@ -109,9 +109,6 @@ int main(int args,char** argv) {
     else
       getline(ifs, line);
 
-    //skip empty lines
-    if(line.length() == 0)
-      continue;
     //find starting position of comment
     for(int i=0;i<commentCharacters.size();i++) {
 
@@ -125,7 +122,8 @@ int main(int args,char** argv) {
 
       //line begins with comment, skip it
       if(charpos == 0)
-        continue;
+        line=""; //can't use continue becasuse its for inner loop and we need to
+      //skip outer loop, so that's solution
 
       //find first non-whitespace character
       char c=firstNonWhitespaceCharacter(line);
@@ -133,13 +131,19 @@ int main(int args,char** argv) {
       //if it's comment OR 0 (that means, string contains only whitespaces)
       //then skip that line
       if(c == currentCharacter || c == 0)
-        continue;
+        line=""; //can't use continue becasuse its for inner loop and we need to
+        //skip outer loop, so that's solution
+
       //comment exist, and isn't the only thing on that line
       //so remove it
       if(charpos > -1) {
         line=line.substr(0, charpos);
       }
     }
+    //skip empty lines
+    //it's after loop because that loop might zero-out line lengths
+    if(line.length() == 0)
+      continue;
     //remove tailing whitespaces
     line=removeTailingWhitespaces(line);
 
