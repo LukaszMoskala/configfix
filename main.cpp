@@ -84,9 +84,9 @@ int main(int _args,char** _argv) {
     cerr<<"along with this program.  If not, see <https://www.gnu.org/licenses/>."<<endl;
     cerr<<endl;
     cerr<<"Configfix: program to remove empty lines, comments and trailing whitespaces from files"<<endl;
-    cerr<<"usage: configfix /path/to/file"<<endl;
-    cerr<<"       configfix relative/path"<<endl;
-    cerr<<"Reading from STDIN is supported, just don't pass any parameters"<<endl;
+    cerr<<"usage: configfix -f /path/to/file"<<endl;
+    cerr<<"       configfix -f relative/path"<<endl;
+    cerr<<"       configfix --stdin"<<endl;
     cerr<<"Current file will be saved as <filename>.bak"<<endl;
     cerr<<"If it exist, it'll be overwritten"<<endl;
     return 0;
