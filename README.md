@@ -5,7 +5,7 @@ Remove empty lines and comments from config files
 
 `configfix` - read STDIN, remove comments and empty lines, and output to STDOUT.
 
-`configfix -V` or `configfix --version` - displays program version
+`configfix -V` or `configfix --version` - displays program version, and compilation time
 
 `configfix -h` or `configfix --help` - shows help, author and license informations
 
