@@ -21,6 +21,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #include <cstring>
 #include <errno.h>
 using namespace std;
+
+//this string contains characters, that indicate comments in file
+string commentCharacters = "#;";
+
 //returns true if c is whitespace
 bool isWhistespace(char c) {
   return (c == '\t' || c == '\n' || c == '\r' || c == ' ');
@@ -109,25 +113,33 @@ int main(int args,char** argv) {
     if(line.length() == 0)
       continue;
     //find starting position of comment
-    int sharpPos=line.find("#");
+    for(int i=0;i<commentCharacters.size();i++) {
 
-    //line begins with comment, skip it
-    if(sharpPos == 0)
-      continue;
+      char currentCharacter=commentCharacters[i];
 
-    //find first non-whitespace character
-    char c=firstNonWhitespaceCharacter(line);
+      //convert char to string, dirty hack but works
+      string tmp=" ";
+      tmp[0]=currentCharacter;
 
-    //if it's comment OR 0 (that means, string contains only whitespaces)
-    //then skip that line
-    if(c == '#' || c == 0)
-      continue;
-    //comment exist, and isn't the only thing on that line
-    //so remove it
-    if(sharpPos > -1) {
-      line=line.substr(0, sharpPos);
+      int charpos=line.find(tmp);
+
+      //line begins with comment, skip it
+      if(charpos == 0)
+        continue;
+
+      //find first non-whitespace character
+      char c=firstNonWhitespaceCharacter(line);
+
+      //if it's comment OR 0 (that means, string contains only whitespaces)
+      //then skip that line
+      if(c == currentCharacter || c == 0)
+        continue;
+      //comment exist, and isn't the only thing on that line
+      //so remove it
+      if(charpos > -1) {
+        line=line.substr(0, charpos);
+      }
     }
-
     //remove tailing whitespaces
     line=removeTailingWhitespaces(line);
 
