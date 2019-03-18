@@ -7,9 +7,10 @@ then
   exit 1
 fi
 echo "Example config file before cleaning:"
-echo ""
+echo "=========================================="
 cat testdata.txt
-echo ""
+echo "=========================================="
 echo "After cleaning: "
-echo ""
+echo "=========================================="
 cat testdata.txt | $CONFIGFIX -f -
+echo "=========================================="
