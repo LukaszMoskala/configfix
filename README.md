@@ -17,3 +17,14 @@ Program interprets `#` and `;` as comments indicators. You can override this by 
 use `-s` or `--stats` to display summary at end of program (STDERR)
 # License
 Program is shared under GNU GPL V3 license, for more informations see https://www.gnu.org/licenses/gpl-3.0.en.html
+# Compilation
+On Linux-based systems:
+```
+git clone https://github.com/LukaszMoskala/configfix.git
+cd configfix
+make
+sudo make install
+```
+Program will be installed to `/usr/local/bin/`
+# Supported OS and architectures
+Program should work on anything that has GCC 8. Tested with Archlinux (x86_64), FreeBSD 12.0 (x86_64), Ubuntu Server 16.04 (armv7l)
