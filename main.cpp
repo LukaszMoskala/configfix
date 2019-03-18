@@ -92,6 +92,12 @@ int main(int _args,char** _argv) {
     cerr<<"Configfix: program to remove empty lines, comments and trailing whitespaces from files"<<endl;
     cerr<<"usage: configfix -f /path/to/file"<<endl;
     cerr<<"       configfix -f relative/path"<<endl;
+    cerr<<endl;
+    cerr<<"Additional options: "<<endl;
+    cerr<<"       -s --stats        | display more informations"<<endl;
+    cerr<<"       -V --version      | display version"<<endl;
+    cerr<<"       -h --help         | this message"<<endl;
+    cerr<<"       -c --commentchars | Specify characters that indicates commnet"<<endl;
     cerr<<"Current file will be saved as <filename>.bak"<<endl;
     cerr<<"If it exist, it'll be overwritten"<<endl;
     return 0;
