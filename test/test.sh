@@ -14,5 +14,5 @@ echo "After cleaning: "
 echo "=========================================="
 #we are passing data from stdin because otherwise
 #testdata.txt would get overwritten
-cat testdata.txt | $CONFIGFIX -f -
+$CONFIGFIX -f - < testdata.txt
 echo "=========================================="
