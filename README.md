@@ -25,8 +25,7 @@ Removed empty lines: 5
 ```
 # License
 Program is shared under GNU GPL V3 license, for more informations see https://www.gnu.org/licenses/gpl-3.0.en.html
-# Compilation
-On Linux-based systems:
+# Compilation on Linux-based systems
 ```
 git clone https://github.com/LukaszMoskala/configfix.git
 cd configfix
@@ -34,5 +33,9 @@ make
 sudo make install
 ```
 Program will be installed to `/usr/local/bin/`. Override this setting by using `sudo make PREFIX=/usr install` to install to `/usr/bin/` or any directory that you want
+
+Note that on FreeBSD you have to use `gmake` instead of `make`
+# Compilation on Windows
+I don't see any reason to use this program on windows, because there is almost no config files. Program should compile anyway, but I have no way of testing this. If you were able to run it on windows, create pull request with changes to readme with instructions so others may use it too
 # Supported OS and architectures
 Program should work on anything that has GCC 8. Tested with Archlinux (x86_64), FreeBSD 12.0 (x86_64), Ubuntu Server 16.04 (armv7l)
