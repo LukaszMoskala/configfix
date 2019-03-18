@@ -15,6 +15,14 @@ Program interprets `#` and `;` as comments indicators. You can override this by 
 `configfix -c '!*'` will cause `!` and `*` to be interpreted as comment indicator
 # Statistics
 use `-s` or `--stats` to display summary at end of program (STDERR)
+
+Example output:
+```
+Removed tailing whitespaces: 1
+Removed comments: 4
+        (characters: 179)
+Removed empty lines: 5
+```
 # License
 Program is shared under GNU GPL V3 license, for more informations see https://www.gnu.org/licenses/gpl-3.0.en.html
 # Compilation
