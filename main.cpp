@@ -159,11 +159,8 @@ int main(int _args,char** _argv) {
 
       char currentCharacter=commentCharacters[i];
 
-      //convert char to string, dirty hack but works
-      string tmp=" ";
-      tmp[0]=currentCharacter;
-
-      int charpos=line.find(tmp);
+      //Find position of character that indicates comment
+      int charpos=line.find(currentCharacter);
 
       //line begins with comment, skip it
       if(charpos == 0) {
