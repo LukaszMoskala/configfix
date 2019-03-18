@@ -185,7 +185,7 @@ int main(int _args,char** _argv) {
       }
 
       //comment exist, and isn't the only thing on that line
-      //so remove it
+      //so remove only the comment, not entire line
       if(charpos > -1) {
         int i0=line.size();
         line=line.substr(0, charpos);
@@ -197,7 +197,9 @@ int main(int _args,char** _argv) {
       }
     }
     //skip empty lines
-    //it's after loop because that loop might zero-out line lengths
+    //We can't put this before removing comments
+    //because line after removing comments may be empty
+    //so we have to check if this is the case
     if(line.length() == 0) {
       stats.removedEmptyLines++;
       continue;
