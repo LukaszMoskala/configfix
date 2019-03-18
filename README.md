@@ -25,6 +25,6 @@ cd configfix
 make
 sudo make install
 ```
-Program will be installed to `/usr/local/bin/`
+Program will be installed to `/usr/local/bin/`. Override this setting by using `sudo make PREFIX=/usr install` to install to `/usr/bin/` or any directory that you want
 # Supported OS and architectures
 Program should work on anything that has GCC 8. Tested with Archlinux (x86_64), FreeBSD 12.0 (x86_64), Ubuntu Server 16.04 (armv7l)
