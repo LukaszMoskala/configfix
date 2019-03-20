@@ -95,7 +95,8 @@ int main(int _args,char** _argv) {
     cerr<<endl;
     cerr<<"Additional options: "<<endl;
     cerr<<"       -s --stats        | display more informations"<<endl;
-    cerr<<"       -V --version      | display version"<<endl;
+    cerr<<"       -V --version      | display version and compilation time"<<endl;
+    cerr<<"       -O --oversion     | display only version"<<endl;
     cerr<<"       -h --help         | this message"<<endl;
     cerr<<"       -c --commentchars | Specify characters that indicates comment"<<endl;
     cerr<<"Current file will be saved as <filename>.bak"<<endl;
