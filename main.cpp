@@ -26,6 +26,9 @@ using namespace std;
 //value passed from command line, assigned in main
 string commentCharacters;
 
+//Display a lot of informations about whats happening
+bool debug=false;
+
 //returns true if c is whitespace
 bool isWhitespace(char c) {
   return (c == '\t' || c == '\n' || c == '\r' || c == ' ');
@@ -100,6 +103,7 @@ int main(int _args,char** _argv) {
     cerr<<"       -O --oversion     | display only version"<<endl;
     cerr<<"       -h --help         | this message"<<endl;
     cerr<<"       -c --commentchars | Specify characters that indicates comment"<<endl;
+    cerr<<"       -d --debug        | Display a lot of messages"<<endl;
     cerr<<"Current file will be saved as <filename>.bak"<<endl;
     cerr<<"If it exist, it'll be overwritten"<<endl;
     return 0;
@@ -114,8 +118,12 @@ int main(int _args,char** _argv) {
     cout<<VERSION<<endl;
     return 0;
   }
+  debug=argexist("d","debug");
   //characters that indicates comments
   commentCharacters=getarg("c","commentchars","#;");
+  if(debug) {
+    cerr<<"[DEBUG] Comment characters: "<<commentCharacters<<endl;
+  }
   //for file IO handling
   ifstream ifs;
   ofstream ofs;
@@ -125,16 +133,29 @@ int main(int _args,char** _argv) {
   string fname="-";
   if(args == 2) {
     fname=argv[1];
+    if(debug) {
+      cerr<<"[DEBUG] Assuming argument 1 is filename: "<<fname<<endl;
+    }
     if(fname.find("-") == 0 && fname != "-") { //that was not a file name
+      if(debug) {
+        cerr<<"[DEBUG] Oops, it is probably a parameter"<<endl;
+      }
       fname=getarg("f","filename","-");
     }
   }
+
   //if filename is not '-', use files
   if(fname != "-") {
+    if(debug) {
+      cerr<<"[DEBUG] Finally, filename is: "<<fname<<endl;
+    }
     //tell program that we'r not using STDIN
     useStdin=false;
     //generate new file name for backup
     string newname=fname+".bak";
+    if(debug) {
+      cerr<<"[DEBUG] Moving "<<fname<<" to "<<newname<<endl;
+    }
     //move file to file.bak
     if(rename(fname.c_str(),newname.c_str())) {
       cerr<<"Failed to move "<<fname<<" to "<<newname<<": "<<strerror(errno)<<endl;
@@ -167,7 +188,12 @@ int main(int _args,char** _argv) {
       getline(cin,line);
     else
       getline(ifs, line);
-
+    if(debug) {
+      //for readability
+      cerr<<endl;
+      cerr<<endl;
+      cerr<<"[DEBUG] Current line: "<<line<<endl;
+    }
     //find starting position of comment
     for(int i=0;i<commentCharacters.size() && line.size();i++) {
 
@@ -178,6 +204,9 @@ int main(int _args,char** _argv) {
 
       //line begins with comment, skip it
       if(charpos == 0) {
+        if(debug) {
+          cerr<<"[DEBUG] Line begins with comment (char="<<currentCharacter<<"), removing"<<endl;
+        }
         stats.removedCharacters+=line.size();
         stats.removedFullLineComments++;
         //setting line to empty will force program to skip it when writting
@@ -192,6 +221,9 @@ int main(int _args,char** _argv) {
       //if it's comment OR 0 (that means, string contains only whitespaces)
       //then skip that line
       if(c == currentCharacter || c == 0) {
+        if(debug) {
+          cerr<<"[DEBUG] First non-whitespace character is comment or doesnt exist, removing line"<<endl;
+        }
         stats.removedCharacters+=line.size();
         stats.removedComments++;
         line="";
@@ -202,6 +234,9 @@ int main(int _args,char** _argv) {
       //so remove only the comment, not entire line
       if(charpos > -1) {
         int i0=line.size();
+        if(debug) {
+          cerr<<"[DEBUG] Comment found at position "<<i0<<endl;
+        }
         line=line.substr(0, charpos);
         int i1=line.size();
         int i2=i0-i1;
@@ -215,6 +250,9 @@ int main(int _args,char** _argv) {
     //because line after removing comments may be empty
     //so we have to check if this is the case
     if(line.length() == 0) {
+      if(debug) {
+        cerr<<"[DEBUG] This line is empty"<<endl;
+      }
       stats.removedEmptyLines++;
       continue;
     }
