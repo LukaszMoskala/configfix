@@ -39,8 +39,9 @@ string removeTailingWhitespaces(string &s) {
   for(int i=s.length()-1;i>=0 && lastChar == 0;i--) {
     if(!isWhitespace(s[i])) lastChar=i;
   }
-  if(debug) {
-    cerr<<"[DEBUG] Removed "<<s.length()-(lastChar+1)<<" tailing whitespaces"<<endl;
+  int removedWhitespaces=s.length()-(lastChar+1);
+  if(debug && removedWhitespaces) {
+    cerr<<"[DEBUG] Removed "<<removedWhitespaces<<" tailing whitespaces"<<endl;
   }
   return s.substr(0, lastChar+1);
 }
