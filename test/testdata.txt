@@ -2,5 +2,5 @@
 #Following line contains some whitespaces and nothing else
 
 #Following line contains whitespaces, then text, then whitespaces
-   hello world!
+   hello world!     
 I am text and comment is after me #and i'm the comment
