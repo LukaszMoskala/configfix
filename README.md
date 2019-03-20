@@ -7,6 +7,8 @@ Remove empty lines and comments from config files
 
 `configfix -V` or `configfix --version` - displays program version, and compilation time
 
+`configfix -O` or `configfix --oversion` - displays only version
+
 `configfix -h` or `configfix --help` - shows help, author and license informations
 
 You can use `configfix /path/to/file` without `-f` switch, but filename must be the only argument
