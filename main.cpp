@@ -106,6 +106,11 @@ int main(int _args,char** _argv) {
     cerr<<"Configfix "<<VERSION<<" compiled "<<__DATE__<<" "<<__TIME__<<endl;
     return 0;
   }
+  //display only version without any other informations
+  if(argexist("O","oversion")) {
+    cout<<VERSION<<endl;
+    return 0;
+  }
   //characters that indicates comments
   commentCharacters=getarg("c","commentchars","#;");
   //for file IO handling
