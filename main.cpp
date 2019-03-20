@@ -102,8 +102,9 @@ int main(int _args,char** _argv) {
     cerr<<"If it exist, it'll be overwritten"<<endl;
     return 0;
   }
+  //display to STDOUT not STDERR because this is usefull in scripts
   if(argexist("V","version")) {
-    cerr<<"Configfix "<<VERSION<<" compiled "<<__DATE__<<" "<<__TIME__<<endl;
+    cout<<"Configfix "<<VERSION<<" compiled "<<__DATE__<<" "<<__TIME__<<endl;
     return 0;
   }
   //display only version without any other informations
