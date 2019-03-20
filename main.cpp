@@ -232,14 +232,12 @@ int main(int _args,char** _argv) {
       //comment exist, and isn't the only thing on that line
       //so remove only the comment, not entire line
       if(charpos > -1) {
-        int i0=line.size();
+        int i=line.size();
         if(debug) {
-          cerr<<"[DEBUG] Comment found at position "<<i0<<endl;
+          cerr<<"[DEBUG] Comment found at position "<<i<<endl;
         }
         line=line.substr(0, charpos);
-        int i1=line.size();
-        int i2=i0-i1;
-        stats.removedCharacters+=i2;
+        stats.removedCharacters+=i-line.size();
         stats.removedComments++;
         break;
       }
