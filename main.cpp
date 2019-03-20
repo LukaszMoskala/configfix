@@ -97,7 +97,7 @@ int main(int _args,char** _argv) {
     cerr<<"       -s --stats        | display more informations"<<endl;
     cerr<<"       -V --version      | display version"<<endl;
     cerr<<"       -h --help         | this message"<<endl;
-    cerr<<"       -c --commentchars | Specify characters that indicates commnet"<<endl;
+    cerr<<"       -c --commentchars | Specify characters that indicates comment"<<endl;
     cerr<<"Current file will be saved as <filename>.bak"<<endl;
     cerr<<"If it exist, it'll be overwritten"<<endl;
     return 0;
