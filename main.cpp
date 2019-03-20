@@ -234,7 +234,7 @@ int main(int _args,char** _argv) {
       if(charpos > -1) {
         int i=line.size();
         if(debug) {
-          cerr<<"[DEBUG] Comment found at position "<<i<<endl;
+          cerr<<"[DEBUG] Comment found at position "<<charpos<<endl;
         }
         line=line.substr(0, charpos);
         stats.removedCharacters+=i-line.size();
