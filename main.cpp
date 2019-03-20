@@ -65,7 +65,7 @@ string getarg(const string &shortname, const string &longname, const string &def
   return defval;
 }
 bool argexist(const string &shortname, const string &longname) {
-  for(int i=0;i<args;i++) {
+  for(int i=1;i<args;i++) {
     string ca(argv[i]);
     if( ca == "--"+longname  || ca == "-"+shortname ) {
       return true;
