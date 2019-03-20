@@ -94,7 +94,7 @@ int main(int _args,char** _argv) {
     cerr<<"       configfix -f relative/path"<<endl;
     cerr<<endl;
     cerr<<"Additional options: "<<endl;
-    cerr<<"       -s --stats        | display more informations"<<endl;
+    cerr<<"       -n --nostats      | Don't display statistics"<<endl;
     cerr<<"       -V --version      | display version and compilation time"<<endl;
     cerr<<"       -O --oversion     | display only version"<<endl;
     cerr<<"       -h --help         | this message"<<endl;
@@ -230,7 +230,7 @@ int main(int _args,char** _argv) {
   //close file if opened
   if(!useStdin)
     ofs.close();
-  if(argexist("s","stats")) {
+  if(!argexist("n","nostats")) {
     cerr<<"Removed tailing whitespaces: "<<stats.tailingWhitespacesRemoved<<endl;
     cerr<<"Removed comments: "<<stats.removedComments<<endl;
     cerr<<"        (characters: "<<stats.removedCharacters<<")"<<endl;

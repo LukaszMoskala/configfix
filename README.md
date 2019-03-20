@@ -16,8 +16,8 @@ You can use `configfix /path/to/file` without `-f` switch, but filename must be 
 Program interprets `#` and `;` as comments indicators. You can override this by using command line options:
 `configfix -c '!*'` will cause `!` and `*` to be interpreted as comment indicator
 # Statistics
-use `-s` or `--stats` to display summary at end of program (STDERR)
-
+Statistics are ON by default. You can disable this by using `-n` or `--nostats`.
+Statistics are printed to STDERR so that STDOUT can be still be used for data.
 Example output:
 ```
 Removed tailing whitespaces: 1
