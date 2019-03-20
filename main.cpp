@@ -75,6 +75,7 @@ struct stats_t {
   uint16_t removedComments=0;
   uint16_t removedEmptyLines=0;
   uint16_t removedCharacters=0;
+  uint16_t removedFullLineComments=0;
   uint16_t tailingWhitespacesRemoved=0;
 } stats;
 int main(int _args,char** _argv) {
@@ -178,7 +179,7 @@ int main(int _args,char** _argv) {
       //line begins with comment, skip it
       if(charpos == 0) {
         stats.removedCharacters+=line.size();
-        stats.removedComments++;
+        stats.removedFullLineComments++;
         //setting line to empty will force program to skip it when writting
         //side effect: causes it to be counted in statistics as empty line
         line="";
@@ -232,9 +233,9 @@ int main(int _args,char** _argv) {
     ofs.close();
   if(!argexist("n","nostats")) {
     cerr<<"Removed tailing whitespaces: "<<stats.tailingWhitespacesRemoved<<endl;
-    cerr<<"Removed comments: "<<stats.removedComments<<endl;
+    cerr<<"Removed comments: "<<stats.removedComments+stats.removedFullLineComments<<endl;
     cerr<<"        (characters: "<<stats.removedCharacters<<")"<<endl;
-    cerr<<"Removed empty lines: "<<stats.removedEmptyLines<<endl;
+    cerr<<"Removed empty lines: "<<stats.removedEmptyLines-stats.removedFullLineComments<<endl;
   }
   return 0;
 }
