@@ -39,6 +39,9 @@ string removeTailingWhitespaces(string s) {
   for(int i=s.length()-1;i>=0 && lastChar == 0;i--) {
     if(!isWhitespace(s[i])) lastChar=i;
   }
+  if(debug) {
+    cerr<<"[DEBUG] Removed "<<s.length()-(lastChar+1)<<" tailing whitespaces"<<endl;
+  }
   return s.substr(0, lastChar+1);
 }
 //returns first non-whitespace character, not it's position!
