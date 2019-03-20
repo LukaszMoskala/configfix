@@ -40,4 +40,4 @@ Note that on FreeBSD you have to use `gmake` instead of `make`
 # Compilation on Windows
 I don't see any reason to use this program on windows, because there is almost no config files. Program should compile anyway, but I have no way of testing this. If you were able to run it on windows, create pull request with changes to readme with instructions so others may use it too
 # Supported OS and architectures
-Program should work on anything that has GCC 8. Tested with Archlinux (x86_64), FreeBSD 12.0 (x86_64), Ubuntu Server 16.04 (armv7l)
+Program should work on anything that supports `C++17`. Tested with Archlinux (x86_64, GCC 8.2.1), FreeBSD 12.0 (x86_64), Ubuntu Server 16.04 (armv7l, GCC 5.5.0)
