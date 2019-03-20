@@ -29,7 +29,7 @@ string commentCharacters;
 //Display a lot of informations about whats happening
 bool debug=false;
 
-string removeTailingWhitespaces(string &s) {
+string removeTailingWhitespaces(const string &s) {
   int lastChar=0;
   for(int i=s.length()-1;i>=0 && lastChar == 0;i--) {
     if(!isspace(s[i])) lastChar=i;
@@ -41,7 +41,7 @@ string removeTailingWhitespaces(string &s) {
   return s.substr(0, lastChar+1);
 }
 //returns first non-whitespace character, not it's position!
-char firstNonWhitespaceCharacter(string &s) {
+char firstNonWhitespaceCharacter(const string &s) {
   for(int i=0;i<s.size();i++) {
     if(!isspace(s[i])) return s[i];
   }
@@ -55,7 +55,7 @@ char **argv;
 // -shortname value
 
 //shortname should be only 1 character in length!
-string getarg(string shortname, string longname, string defval) {
+string getarg(const string &shortname, const string &longname, const string &defval) {
   for(int i=1;i<args;i++) {
     string ca(argv[i]);
     if( ( ca == "--"+longname  || ca == "-"+shortname ) && i+1 < args ) {
@@ -64,7 +64,7 @@ string getarg(string shortname, string longname, string defval) {
   }
   return defval;
 }
-bool argexist(string shortname, string longname) {
+bool argexist(const string &shortname, const string &longname) {
   for(int i=0;i<args;i++) {
     string ca(argv[i]);
     if( ca == "--"+longname  || ca == "-"+shortname ) {
