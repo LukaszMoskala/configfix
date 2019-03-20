@@ -34,7 +34,7 @@ bool isWhitespace(char c) {
   return (c == '\t' || c == '\n' || c == '\r' || c == ' ');
 }
 
-string removeTailingWhitespaces(string s) {
+string removeTailingWhitespaces(string &s) {
   int lastChar=0;
   for(int i=s.length()-1;i>=0 && lastChar == 0;i--) {
     if(!isWhitespace(s[i])) lastChar=i;
@@ -45,7 +45,7 @@ string removeTailingWhitespaces(string s) {
   return s.substr(0, lastChar+1);
 }
 //returns first non-whitespace character, not it's position!
-char firstNonWhitespaceCharacter(string s) {
+char firstNonWhitespaceCharacter(string &s) {
   for(int i=0;i<s.size();i++) {
     if(!isWhitespace(s[i])) return s[i];
   }
