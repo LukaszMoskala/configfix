@@ -13,8 +13,11 @@ Remove empty lines and comments from config files
 
 You can use `configfix /path/to/file` without `-f` switch, but filename must be the only argument
 # Comments
-Program interprets `#` and `;` as comments indicators. You can override this by using command line options:
+Program interprets `#` as comments indicators. You can override this by using command line options:
 `configfix -c '!*'` will cause `!` and `*` to be interpreted as comment indicator
+# Tabs to spaces
+Use `-t` or `--tabs` to convert tabs to spaces. By default, every TAB is replaced with
+4 spaces. You can override that by using `-s` or `--spaces`.
 # Statistics
 Statistics are ON by default. You can disable this by using `-n` or `--nostats`.
 Statistics are printed to STDERR so that STDOUT can be still be used for data.
