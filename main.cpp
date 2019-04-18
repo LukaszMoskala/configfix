@@ -119,7 +119,7 @@ int main(int _args,char** _argv) {
   }
   debug=argexist("d","debug");
   //characters that indicates comments
-  commentCharacters=getarg("c","commentchars","#;");
+  commentCharacters=getarg("c","commentchars","#");
   if(debug) {
     cerr<<"[DEBUG] Comment characters: "<<commentCharacters<<endl;
   }
