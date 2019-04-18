@@ -47,6 +47,17 @@ char firstNonWhitespaceCharacter(const string &s) {
   }
   return 0;
 }
+//from:
+//https://stackoverflow.com/questions/2896600/how-to-replace-all-occurrences-of-a-character-in-string
+std::string ReplaceAll(std::string str, const std::string& from, const std::string& to) {
+    size_t start_pos = 0;
+    while((start_pos = str.find(from, start_pos)) != std::string::npos) {
+        str.replace(start_pos, from.length(), to);
+        start_pos += to.length(); // Handles case where 'to' is a substring of 'from'
+    }
+    return str;
+}
+
 int args;
 char **argv;
 //parses argument
@@ -103,6 +114,8 @@ int main(int _args,char** _argv) {
     cerr<<"       -h --help         | this message"<<endl;
     cerr<<"       -c --commentchars | Specify characters that indicates comment"<<endl;
     cerr<<"       -d --debug        | Display a lot of messages"<<endl;
+    cerr<<"       -t --tabs         | convert tabs to spaces"<<endl;
+    cerr<<"       -s --spaces       | every tab will be converted to s spaces"<<endl;
     cerr<<"Current file will be saved as <filename>.bak"<<endl;
     cerr<<"If it exist, it'll be overwritten"<<endl;
     return 0;
@@ -118,6 +131,16 @@ int main(int _args,char** _argv) {
     return 0;
   }
   debug=argexist("d","debug");
+  bool replacetabs=argexist("t","tabs");
+  int ntts=0;
+  string stts="";
+  if(replacetabs) {
+    ntts=atoi(getarg("s","spaces","4").c_str());
+    if(debug)
+      cerr<<"[DEBUG] Every tab will be replaced with "<<ntts<<" spaces"<<endl;
+    for(int i=0;i<ntts;i++)
+      stts+=' ';
+  }
   //characters that indicates comments
   commentCharacters=getarg("c","commentchars","#");
   if(debug) {
@@ -192,6 +215,9 @@ int main(int _args,char** _argv) {
       cerr<<endl;
       cerr<<endl;
       cerr<<"[DEBUG] Current line: "<<line<<endl;
+    }
+    if(replacetabs) {
+      line=ReplaceAll(line, "\t",stts);
     }
     //find starting position of comment
     for(int i=0;i<commentCharacters.size() && line.size();i++) {
