@@ -1,0 +1,6 @@
+#This is file used to test configfix
+#Following line contains some whitespaces and nothing else
+
+#Following line contains whitespaces, then text, then whitespaces
+   hello world!     
+I am text and comment is after me #and i'm the comment
