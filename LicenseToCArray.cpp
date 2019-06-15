@@ -1,5 +1,12 @@
 //(C) 2019 Łukasz Konrad Moskała <lm@lukaszmoskala.pl>
-// this code is in the public domain 
+// this code is in the public domain
+
+//compile:
+// $ g++ LicenseToCArray.cpp -o ltca
+
+//use:
+// $ ./ltca > gpl_v3.h
+
 #include <iostream>
 #include <fstream>
 #include <inttypes.h>
