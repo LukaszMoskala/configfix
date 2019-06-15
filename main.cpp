@@ -20,6 +20,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #include <cstdio>
 #include <cstring>
 #include <errno.h>
+
+#include "gpl_v3.h"
+
 using namespace std;
 
 //this string contains characters, that indicate comments in file
@@ -122,7 +125,8 @@ int main(int _args,char** _argv) {
     return 0;
   }
   if(argexist("l","license")) {
-    //TODO: show gnu gpl license
+    cout<<GNU_GPL_V3_LICENSE<<endl;
+    return 0;
   }
   //display to STDOUT not STDERR because this is usefull in scripts
   if(argexist("V","version")) {
