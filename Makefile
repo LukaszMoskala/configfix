@@ -2,7 +2,7 @@
 CXX=g++
 
 #append these flags to flags passed through command line
-override CXXFLAGS+=-O3 --std=c++17
+override CXXFLAGS+=-O3 --std=c++17 -static -static-libgcc
 
 PREFIX=/usr/local
 
