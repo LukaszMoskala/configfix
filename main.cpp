@@ -116,9 +116,13 @@ int main(int _args,char** _argv) {
     cerr<<"       -d --debug        | Display a lot of messages"<<endl;
     cerr<<"       -t --tabs         | convert tabs to spaces"<<endl;
     cerr<<"       -s --spaces       | every tab will be converted to s spaces"<<endl;
+    cerr<<"       -l --license      | show this program's license"<<endl;
     cerr<<"Current file will be saved as <filename>.bak"<<endl;
     cerr<<"If it exist, it'll be overwritten"<<endl;
     return 0;
+  }
+  if(argexist("l","license")) {
+    //TODO: show gnu gpl license
   }
   //display to STDOUT not STDERR because this is usefull in scripts
   if(argexist("V","version")) {
