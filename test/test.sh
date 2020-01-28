@@ -6,13 +6,13 @@ then
   echo "Executable not found!"
   exit 1
 fi
-echo "Example config file before cleaning:"
-echo "=========================================="
-cat testdata.txt
-echo "=========================================="
-echo "After cleaning: "
-echo "=========================================="
-#we are passing data from stdin because otherwise
-#testdata.txt would get overwritten
-$CONFIGFIX -f - < testdata.txt
-echo "=========================================="
+cp testdata.txt out2.txt
+cp testdata.txt out3.txt
+echo " == Test 1 ======="
+$CONFIGFIX -f - < testdata.txt > out1.txt
+echo " == Test 2 ======="
+$CONFIGFIX -f out2.txt
+echo " == Test 3 ======="
+$CONFIGFIX out3.txt
+md5sum -c valid-checksums.txt
+rm out*.txt out*.txt.bak

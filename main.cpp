@@ -162,8 +162,10 @@ int main(int _args,char** _argv) {
       if(debug) {
         cerr<<"[DEBUG] Oops, it is probably a parameter"<<endl;
       }
-      fname=getarg("f","filename","-");
     }
+  }
+  if(argexist("f","filename")) {
+    fname=getarg("f","filename","-");
   }
 
   //if filename is not '-', use files
