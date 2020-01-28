@@ -170,6 +170,7 @@ int main(int _args,char** _argv) {
       if(debug) {
         cerr<<"[DEBUG] Oops, it is probably a parameter"<<endl;
       }
+      fname="-";
     }
   }
   if(argexist("f","filename")) {
